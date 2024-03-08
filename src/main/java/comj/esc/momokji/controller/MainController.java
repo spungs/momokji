@@ -10,4 +10,14 @@ public class MainController {
     public String main() {
         return "main";
     }
+
+    @GetMapping(value = "/test1")
+    public String test1() {
+        return "commonTemplate/test1";
+    }
+
+    @GetMapping(value = "/test2")
+    public String test2() {
+        return "commonTemplate/test2";
+    }
 }
