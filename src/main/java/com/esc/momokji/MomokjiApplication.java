@@ -1,4 +1,4 @@
-package comj.esc.momokji;
+package com.esc.momokji;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
