@@ -1,4 +1,4 @@
-package com.esc.momokji.api;
+package com.esc.momokji.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
