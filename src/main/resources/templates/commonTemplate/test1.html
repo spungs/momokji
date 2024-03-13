@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "stylesheet" th:href = "@{ /css/commonCss.css }"/>
+    <script th:src = "@{ /js/commonJs.js }"></script>
+    <script>
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id = "layout1" th:include = "~{ /commonTemplate/layout.html :: layout1 }" />
+    <div id = "layout2" th:include = "~{ /commonTemplate/layout.html :: #layout2 }"/>
+</body>
+</html>

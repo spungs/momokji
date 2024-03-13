@@ -1,0 +1,11 @@
+#layout1 {
+    display : inline-block;
+    background : red;
+    height : 20%;
+}
+
+#layout2 {
+    display : inline-block;
+    background : blue;
+    height : 20%;
+}

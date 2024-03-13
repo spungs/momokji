@@ -1,0 +1,51 @@
+/* 상단 공용 Header Layout */
+.headerWrapper {
+    position : fixed;
+    width : 100%;
+    height : 15%;
+    box-shadow : 0 1px 5px 1px gray;
+}
+
+.commonHeaderAttr {
+    display : inline-block;
+}
+
+/*************************** 로고 영역 ***************************/
+.headerComp1 {
+    width : 24%;
+    height : 100%;
+}
+
+.whatImg {
+    width : 10%;
+    height : 80%;
+    cursor : pointer;
+}
+
+.mb-3 {
+    display : inline-block;
+    width : 80%;
+}
+/*************************************************************/
+
+/* 검색, 베너 등 영역 */
+.headerComp2 {
+    width : 50%;
+    height : 100%;
+}
+
+/* 로그인, 회원가입 등 영역 */
+.headerComp3 {
+    width : 25%;
+    height : 100%;
+}
+
+/*************************** 검색창 ***************************/
+.form-control {
+    width : 80%;
+}
+
+.searchBox {
+    margin : auto;
+}
+/*************************************************************/
