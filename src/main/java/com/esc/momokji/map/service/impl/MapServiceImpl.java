@@ -1,9 +1,10 @@
-package com.esc.momokji.controller;
+package com.esc.momokji.map.service.impl;
 
+import com.esc.momokji.map.service.MapService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MainServiceImpl implements MainService{
+public class MapServiceImpl implements MapService {
 
     public static final double EARTH_RADIUS = 6371000; // 지구 반지름 (미터)
 

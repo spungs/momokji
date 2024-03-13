@@ -1,5 +1,7 @@
-package com.esc.momokji.controller;
+package com.esc.momokji.map.controller;
 
+import com.esc.momokji.api.NaverMapApiClient;
+import com.esc.momokji.map.service.impl.MapServiceImpl;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,16 +12,16 @@ import java.util.Map;
 
 @Log4j2
 @RestController
-public class RestMainController {
+public class RestMapController {
 
     private final NaverMapApiClient naverMapApiClient;
 
-    public RestMainController(NaverMapApiClient naverMapApiClient) {
+    public RestMapController(NaverMapApiClient naverMapApiClient) {
         this.naverMapApiClient = naverMapApiClient;
     }
 
     @Autowired
-    MainServiceImpl service;
+    MapServiceImpl service;
 
     /**
      * 사용자 근처 가게들 목록을 반환

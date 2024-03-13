@@ -1,4 +1,4 @@
-package com.esc.momokji.controller;
+package com.esc.momokji;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -20,6 +20,6 @@ public class MainController {
 
     @GetMapping("naverMap")
     public String naverMap() {
-        return "naverMap";
+        return "map/naverMap";
     }
 }

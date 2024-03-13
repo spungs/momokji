@@ -1,8 +1,6 @@
-package com.esc.momokji.controller;
+package com.esc.momokji.map.service;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-public interface MainService {
+public interface MapService {
 
     public void findTarget(double latitude, double longitude);
 
