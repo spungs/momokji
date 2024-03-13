@@ -1,4 +1,4 @@
-package comj.esc.momokji;
+package com.esc.momokji;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

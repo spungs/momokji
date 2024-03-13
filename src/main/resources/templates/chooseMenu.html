@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>userIp</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+    <p>모목지~?</p>
+
+    <button onclick="chooseMenu()">메뉴 정해줘!</button>
+
+    <p id="determinedMenu"></p>
+</body>
+<script>
+
+    // 사용자의 position을 가져오고 비동기방식으로 서버에 전달
+    window.onload = function() {
+        // 지리적 위치가 지원되는지 확인
+        if (navigator.geolocation) {
+            // 지원되는 경우 getCurrentPosition() 메서드를 실행, 메서드가 실행되면 매개변수(getCategories)에 지정된 함수 실행.
+            navigator.geolocation.getCurrentPosition(getCategories);
+        }
+        // 지원되지 않는 경우 사용자에게 메시지 표시
+        else {
+            // 모바일에선 어떻게 해줄지 고민해봐야함(모달?)
+            alert("위치정보를 허용해주세요!");
+        }
+
+    }
+
+    // getCategories() 함수는 위도와 경도를 서버로 전달한다.
+    function getCategories(position) {
+        let latitude = position.coords.latitude; // 위도
+        let longitude = position.coords.longitude; // 경도
+
+        $.ajax({
+            type:"post",
+            url:"getNearStore",
+            data  : JSON.stringify({
+                        "latitude": latitude,
+                        "longitude": longitude
+                        })
+            ,
+            contentType : "application/json",
+            // dataType    : "json",
+            success:function(data){
+                console.info(data);
+                let obj = JSON.parse(data) // 리스트
+                console.info(obj);
+            },
+            error: function (xhr, status, error) {
+                // console.log("ERROR!!!");
+                alert("오류발생 오류발생!@@@@@")
+            }
+        });
+
+    }
+    function chooseMenu() {
+        alert("메뉴버튼 눌림 alert");
+    }
+</script>
+</html>
