@@ -8,20 +8,45 @@
     <commonHeader id = "commonHeader" th:fragment = "commonHeader">
         <div id = "headerWrapper" class = "headerWrapper">
             <div id = "headerArea1" class = "commonHeaderAttr headerComp1">
-                <img src = "images/moAll1.png" alt = "이미지 영역"/>
+<!--                <img src = "images/moAll1.png" alt = "이미지 영역"/>-->
+                <!-- 임시 텍스트 대체 -->
+                <span style = "display : inline-block; text-align : center; width : 50%; margin-left : 18%;">
+                    <p style = "font-size : 29px; letter-spacing : 6px;">
+                        M.O.A.L.L.
+                    </p>
+                </span>
             </div>
 
             <!-- 검색, 베너 등 영역 -->
             <div id = "headerArea2" class = "commonHeaderAttr headerComp2">
-                <img class = "whatImg" src = "images/what.png">
+                <img id = "whatImg" class = "whatImg bannerEvent" src = "images/what.png">
                 <div class="mb-3">
-                    <input type = "input" id = "searchQuery" class = "form-control searchBox" placeholder = "">
+                    <input type = "text" id = "searchQuery" class = "form-control searchBox" placeholder = "">
                 </div>
             </div>
 
             <!-- 로그인, 회원가입 등 영역 -->
             <div id = "headerArea3" class = "commonHeaderAttr headerComp3">
+                <button type="button" class="btn btn-outline-primary">
+                    Example1
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    Example2
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    Example3
+                </button>
             </div>
+        </div>
+
+        <div id = "categoryBtn" class = "bannerEvent" style = "display : inline-block; position : relative;">
+            <ul id = "categoryList" class="dropdown-menu">
+                <li><a class="dropdown-item" href="">모먹지?</a></li>
+                <li><a class="dropdown-item" href="">모하지?</a></li>
+                <li><a class="dropdown-item" href="">Example1</a></li>
+                <li><a class="dropdown-item" href="">Example2</a></li>
+                <li><a class="dropdown-item" href="">Example3</a></li>
+            </ul>
         </div>
     </commonHeader>
 </body>
