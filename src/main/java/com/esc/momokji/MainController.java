@@ -21,13 +21,10 @@ public class MainController {
     public String chooseMenu() {
         return "chooseMenu";
     }
-<<<<<<< Updated upstream
-=======
 
     @GetMapping("kakaoMap")
     public String naverMap(Model model) {
         model.addAttribute("appkey", appkey);
         return "map/kakaoMap";
     }
->>>>>>> Stashed changes
 }
