@@ -17,9 +17,4 @@ public class MainController {
     public String chooseMenu() {
         return "chooseMenu";
     }
-
-    @GetMapping("naverMap")
-    public String naverMap() {
-        return "map/naverMap";
-    }
 }
