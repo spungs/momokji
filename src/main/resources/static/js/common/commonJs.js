@@ -1,3 +1,2 @@
-window.onload = () => {
-    // location.href = "https:www.naver.com"
-}
+/* set Header Logo Text */
+function setHeaderLogoText() {}

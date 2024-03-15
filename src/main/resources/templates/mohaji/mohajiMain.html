@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- js -->
+    <script th:src = "@{ ~/js/common/common.js }"></script>
+    <script th:src = "@{ ~/js/mohaji/mohaji.js }"></script>
+    <script>
+        window.onload(() => {
+            // header Logo Text
+            document.getElementById("headerLogoText").innerText = `${ logoText }`;
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <title>모하지</title>
+</head>
+<body>
+    <!-- header Layout -->
+    <div id = "header" class = "header" th:include = "~{ commonTemplate/headerLayout.html :: commonHeader }" />
+
+    <!-- common Map -->
+    <div id = "map" th:include = "~{ commonTemplate/commonMap.html :: commonMapLayout }" />
+</body>
+</html>
