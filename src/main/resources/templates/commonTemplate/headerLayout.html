@@ -18,6 +18,7 @@
 
         <!-- header Css -->
         <link rel = "stylesheet" th:href = "@{ ~/css/headerLayout.css }">
+        <link rel = "stylesheet" th:href = "@{ /css/common/commonCss.css }">
 
         <div id = "headerWrapper" class = "headerWrapper">
             <div id = "headerArea1" class = "commonHeaderAttr headerComp1">
@@ -64,16 +65,16 @@
         </div>
 
         <!-- 로그인 배너 -->
-        <div id = "loginBanner" class = "bannerEvent2" style = "display : inline-block; position : relative;">
-            <ul id = "loginPlatformList" class="dropdown-menu">
-                <li>
-                    <img src = "/images/kakaoLoginBtn.png"/>
-                </li>
+        <div id = "loginBanner" class = "displayNoneSet loginBanner bannerEvent2">
+            <!-- kakao Login Btn -->
+            <span>
+                <img class = "kakaoLoginBtn" src = "/images/loginButtonImages/kakaoLoginBtn.png" />
+            </span>
 
-                <li>
-                    <img src = ""/>
-                </li>
-            </ul>
+            <!-- google Login Btn -->
+            <span>
+                <img alt = "이미지 없음." />
+            </span>
         </div>
     </commonHeader>
 </body>

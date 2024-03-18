@@ -1,13 +1,14 @@
 $(document).ready(() => {
+    /********** 뭐하지 아이콘 mouseOver EventHandler **********/
     let bannerEvent = $(".bannerEvent");
 
     bannerEvent.mouseover(() => {
-        let i = $("#whatImg");
-        let c = $("#categoryBtn");
+        let i = document.getElementById("whatImg");
+        let c = document.getElementById("categoryBtn");
 
-        c.style.top = String(i.getBoundingClientRect().bottom - 18) + "px";
+        c.style.top = String(i.getBoundingClientRect().bottom - 18 + window.scrollY) + "px";
         // c.style.top = String(c.style.top - 18) + "px";
-        c.style.left = (i.getBoundingClientRect().left + 1) + "px";
+        c.style.left = (i.getBoundingClientRect().left + 1 + window.scrollX) + "px";
 
         $("#categoryList").css("display", "block");
     });
@@ -16,30 +17,26 @@ $(document).ready(() => {
         $("#categoryList").css("display", "none");
     });
 
-/*
-    let bannerEvent2 = $("#bannerEvent2");
+    /********** Main Logo Click EventHandler **********/
+    $("#headerLogoText").on("click", () => {
+        location.href = "/";
+    });
+
+    /********** login Button mouseOver EventHandler **********/
+    let bannerEvent2 = $(".bannerEvent2");
 
     bannerEvent2.mouseover(() => {
-        let l = $("#loginBtn");
-        let b = $("#loginBanner");
+        let loginBanner = document.getElementById("loginBanner");
+        let loginBtn = document.getElementById("loginBtn");
 
-        b.style.top = String(l.getBoundingClientRect().bottom + 18) + "px";
-        b.style.left = String(l.getBoundingClientRect().left - 18) + "px";
+        loginBanner.style.top = String(loginBtn.getBoundingClientRect().bottom + window.scrollX) + "px";
+        loginBanner.style.left = String(loginBtn.getBoundingClientRect().left + window.scrollY - 6) + "px";
 
-        $("#loginPlatformList").style("display", "block");
+        loginBanner.style.display = "inline-block";
     });
 
     bannerEvent2.mouseout(() => {
-        $("#loginPlatformList").css("display", "none");
-    });
-
-    $("#loginBtn").mouseup(() => {
-
-    });
-*/
-
-    $("#headerLogoText").on("click", () => {
-        location.href = "/";
+        document.getElementById("loginBanner").style.display = "none";
     });
 });
 
