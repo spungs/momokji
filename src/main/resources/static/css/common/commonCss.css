@@ -1,3 +1,7 @@
+.displayNoneSet {
+    display : none;
+}
+
 #layout1 {
     display : inline-block;
     background : red;

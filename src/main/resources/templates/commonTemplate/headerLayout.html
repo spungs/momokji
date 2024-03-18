@@ -18,13 +18,14 @@
 
         <!-- header Css -->
         <link rel = "stylesheet" th:href = "@{ ~/css/headerLayout.css }">
+        <link rel = "stylesheet" th:href = "@{ /css/common/commonCss.css }">
 
         <div id = "headerWrapper" class = "headerWrapper">
             <div id = "headerArea1" class = "commonHeaderAttr headerComp1">
 <!--                <img src = "images/moAll1.png" alt = "이미지 영역"/>-->
                 <!-- 임시 텍스트 대체 -->
                 <span style = "display : inline-block; text-align : center; width : 50%; margin-left : 18%;">
-                    <p id = "headerLogoText" style = "font-size : 29px; letter-spacing : 6px;">
+                    <p id = "headerLogoText" class = "headerLogoText" style = "font-size : 29px; letter-spacing : 6px;">
                         M.O.A.L.L.
                     </p>
                 </span>
@@ -40,7 +41,7 @@
 
             <!-- 로그인, 회원가입 등 영역 -->
             <div id = "headerArea3" class = "commonHeaderAttr headerComp3">
-                <button id = "loginBtn" type="button" class="btn btn-outline-primary">
+                <button id = "loginBtn" type="button" class="btn btn-outline-primary bannerEvent2">
                     L O G I N
                 </button>
                 <button type="button" class="btn btn-outline-primary">
@@ -52,6 +53,7 @@
             </div>
         </div>
 
+        <!-- 모듈 배너 -->
         <div id = "categoryBtn" class = "bannerEvent" style = "display : inline-block; position : relative;">
             <ul id = "categoryList" class="dropdown-menu">
                 <li><a class="dropdown-item" th:href = "@{ /kakaoMap }">모먹지?</a></li>
@@ -60,6 +62,19 @@
                 <li><a class="dropdown-item" href = "">Example2</a></li>
                 <li><a class="dropdown-item" href = "">Example3</a></li>
             </ul>
+        </div>
+
+        <!-- 로그인 배너 -->
+        <div id = "loginBanner" class = "displayNoneSet loginBanner bannerEvent2">
+            <!-- kakao Login Btn -->
+            <span>
+                <img class = "kakaoLoginBtn" src = "/images/loginButtonImages/kakaoLoginBtn.png" />
+            </span>
+
+            <!-- google Login Btn -->
+            <span>
+                <img alt = "이미지 없음." />
+            </span>
         </div>
     </commonHeader>
 </body>

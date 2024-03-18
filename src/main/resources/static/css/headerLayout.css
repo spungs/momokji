@@ -2,7 +2,7 @@
     상단 공용 Header Layout
 */
 .headerWrapper {
-    position : relative;
+    position : fixed;
     width : 100%;
     height : 15%;
     box-shadow : 0 1px 5px 1px gray;
@@ -19,6 +19,9 @@
     height : 100%;
 }
 
+.headerLogoText {
+    cursor : pointer;
+}
 /*************************************************************/
 
 
@@ -52,6 +55,30 @@
 .headerComp3 {
     width : 25%;
     height : 100%;
+}
+
+.kakaoLoginBtn {
+    width : 80%;
+}
+
+.googleLoginBtn {
+
+}
+
+.loginBanner {
+    display : inline-block;
+    position : relative;
+}
+
+.loginBanner > span {
+    display : inline-block;
+    margin-top : 3px;
+}
+
+.kakaoLoginBtn {
+    width : 110px;
+    height : 33px;
+    cursor : pointer;
 }
 /*****************************************************************************/
 
