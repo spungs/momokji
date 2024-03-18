@@ -10,6 +10,7 @@
     <!-- header Layout -->
     <div id = "header" class = "header" th:include = "~{ commonTemplate/headerLayout.html :: commonHeader }" />
     <div id="map" style="width:500px;height:400px;"></div>
+    <button onclick="recommendMenu()">recommend</button>
 </body>
 <script>
     var latitude; // 위도
@@ -20,6 +21,7 @@
     var placesArr = new Array; // 검색된 가게들 정보
     var categoriesArr = new Array; // 음식 카테고리 배열
     var uniqCategories; // 음식 카테고리 중복제거
+    var menu; // 당첨된 메뉴
 
     // 사용자의 position을 가져오고 비동기방식으로 서버에 전달
     window.onload = function() {
@@ -107,31 +109,46 @@
         }
         if(!pagination.hasNextPage) {
             uniqCategories = new Set(categoriesArr); // 카테고리 중복제거
-            console.info(uniqCategories);
+            // console.info(uniqCategories);
         }
     }
 
     // 지도에 마커를 표시하는 함수
     function displayMarker(place) {
+        // TODO: 함수 재구분 해주기 displayMarker는 marker찍어주는 용도의 함수
         placesArr.push(place);
         var categoryName = place.category_name;
         // 검색된 place 카테고리 추출
-        categoryName = categoryName.split(">")[1].trim();
-        categoriesArr.push(categoryName);
+        try {
+            categoryName = categoryName.split(">")[1].trim();
+            categoriesArr.push(categoryName);
+        } catch {
+            // console.warn('>>>>예외 발생: split()');
+        }
 
 
         // 마커를 생성하고 지도에 표시
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(place.y, place.x)
-        });
+        // var marker = new kakao.maps.Marker({
+        //     map: map,
+        //     position: new kakao.maps.LatLng(place.y, place.x)
+        // });
 
         // 마커에 클릭이벤트를 등록
-        kakao.maps.event.addListener(marker, 'click', function() {
-            // 마커를 클릭하면 장소명이 인포윈도우에 표출
-            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-            infowindow.open(map, marker);
-        });
+        // kakao.maps.event.addListener(marker, 'click', function() {
+        //     // 마커를 클릭하면 장소명이 인포윈도우에 표출
+        //     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        //     infowindow.open(map, marker);
+        // });
+    }
+
+    // 메뉴 추천해주는 함수
+    function recommendMenu() {
+        var random = Math.floor(Math.random() * uniqCategories.size);
+        menu = Array.from(uniqCategories)[random];
+        var market = new Array();
+        market.push(placesArr.category_name.includes(menu)); // 당첨된 메뉴 판매하는 가게들
+        // TODO:market 목록 리스트로 보여주기, 마커찍기
+
     }
 
 
