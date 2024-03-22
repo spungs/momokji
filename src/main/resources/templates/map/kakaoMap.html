@@ -122,7 +122,6 @@
 
     // 지도에 마커를 표시하는 함수
     function displayMarker(place, key) {
-        // TODO: 함수 재구분 해주기 displayMarker는 marker찍어주는 용도의 함수
         if(key == 'placesSearchCB') {
             var categoryName = place.category_name;
             // 검색된 가게(place)의 카테고리 추출
@@ -154,7 +153,8 @@
     // 메뉴 추천해주는 함수
     function recommendMenu() {
         removeMarker(); // 기존 마커 제거
-        setTimeout( () => {
+        infowindow.close(); // 인포윈도우 초기화
+        setTimeout( () => { // removeMarker() 비동기 대기 시간을 위한 setTimeout()
             var random = Math.floor(Math.random() * uniqCategories.size);
             menu = Array.from(uniqCategories)[random];
             console.log("오늘의 메뉴~\n" + menu);
@@ -171,9 +171,8 @@
                 displayMarker(market[i], "recommendMenu");
             }
 
-            // TODO: 메뉴 div로 화면에 알려주기
-            $('#menu').html(menu);
             // 메뉴 알려주기
+            $('#menu').html(menu);
             alert("오늘의 메뉴쓰~\n\t[" + menu + "]\t");
         }, 100);
     }
