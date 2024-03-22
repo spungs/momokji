@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <title>카카오 지도 api</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=56890df0b42db89c1ce2298848552ff9&libraries=services,clusterer,drawing"></script>
-
+    <link rel = "stylesheet" th:href = "@{ ~/css/common/commonCss.css }">
 </head>
 <body>
-    <!-- header Layout -->
     <div id = "header" class = "header" th:include = "~{ commonTemplate/headerLayout.html :: commonHeader }" />
-    <div id="map" style="width:500px;height:400px;"></div>
-    <button onclick="recommendMenu()">recommend</button>
+    <!-- header Layout -->
+    <!-- body -->
+    <div id="content">
+        <div id="map" style="width:500px;height:400px;"></div>
+        <button onclick="recommendMenu()">돌려 돌려 돌림판~!</button>
+        <h3 id="menu"></h3>
+    </div>
 </body>
 <script>
     var latitude; // 위도
@@ -167,6 +171,8 @@
                 displayMarker(market[i], "recommendMenu");
             }
 
+            // TODO: 메뉴 div로 화면에 알려주기
+            $('#menu').html(menu);
             // 메뉴 알려주기
             alert("오늘의 메뉴쓰~\n\t[" + menu + "]\t");
         }, 100);

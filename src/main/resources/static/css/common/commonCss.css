@@ -13,3 +13,8 @@
     background : blue;
     height : 20%;
 }
+
+#content {
+    position : absolute;
+    top : 16%;
+}
