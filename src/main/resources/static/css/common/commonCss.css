@@ -2,6 +2,14 @@
     display : none;
 }
 
+.displayBlockSet {
+    display : block;
+}
+
+.displayInlineBlockSet {
+    display : inline-block;
+}
+
 #layout1 {
     display : inline-block;
     background : red;

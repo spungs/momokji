@@ -92,3 +92,16 @@
     margin : auto;
 }
 /*************************************************************/
+
+.openAnimate1 {
+    animation-name : kf_openAnimate1;
+    animation-duration : 0.5s;
+}
+
+@keyframes kf_openAnimate1 {
+    from {
+        height : 0;
+    } to {
+        height : 100%;
+    }
+}

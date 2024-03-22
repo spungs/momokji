@@ -1,3 +1,6 @@
+var ISTOGGLED_CATEGORY = false;
+var ISTOGGLED_LOGIN = false;
+
 $(document).ready(() => {
     /********** 뭐하지 아이콘 mouseOver EventHandler **********/
     let bannerEvent = $(".bannerEvent");
@@ -7,14 +10,21 @@ $(document).ready(() => {
         let c = document.getElementById("categoryBtn");
 
         c.style.top = String(i.getBoundingClientRect().bottom - 18 + window.scrollY) + "px";
-        // c.style.top = String(c.style.top - 18) + "px";
         c.style.left = (i.getBoundingClientRect().left + 1 + window.scrollX) + "px";
 
-        $("#categoryList").css("display", "block");
+        if (!ISTOGGLED_CATEGORY) {
+            $("#categoryBtn").slideToggle();
+
+            ISTOGGLED_CATEGORY = true;
+        }
     });
 
     bannerEvent.mouseout(() => {
-        $("#categoryList").css("display", "none");
+        if (ISTOGGLED_CATEGORY) {
+            $("#categoryBtn").slideToggle();
+
+            ISTOGGLED_CATEGORY = false;
+        }
     });
 
     /********** Main Logo Click EventHandler **********/
@@ -32,11 +42,12 @@ $(document).ready(() => {
         loginBanner.style.top = String(loginBtn.getBoundingClientRect().bottom + window.scrollX) + "px";
         loginBanner.style.left = String(loginBtn.getBoundingClientRect().left + window.scrollY - 6) + "px";
 
-        loginBanner.style.display = "inline-block";
+        // loginBanner.style.display = "inline-block";
+        $("#loginBanner").slideToggle();
     });
 
     bannerEvent2.mouseout(() => {
-        document.getElementById("loginBanner").style.display = "none";
+        // document.getElementById("loginBanner").style.display = "none";
+        $("#loginBanner").slideToggle();
     });
 });
-
