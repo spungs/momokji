@@ -18,10 +18,12 @@
     var markerPosition; // 지도의 중심좌표 및 현 위치 마커가 표시될 위치
     var infowindow; // 마커 클릭시 장소명을 표출할 인포윈도우
     var map; //지도 생성
-    var placesArr = new Array; // 검색된 가게들 정보
-    var categoriesArr = new Array; // 음식 카테고리 배열
+    var categoriesArr = []; // 음식 카테고리 배열
     var uniqCategories; // 음식 카테고리 중복제거
     var menu; // 당첨된 메뉴
+    var markers = [];
+    var cpData = []; // 검색된 모든 가게들 정보들 복사(api search return data)
+    var market = []; // 오늘의 메뉴 판매하는 가게들
 
     // 사용자의 position을 가져오고 비동기방식으로 서버에 전달
     window.onload = function() {
@@ -54,7 +56,7 @@
         //지도를 생성할 때 필요한 기본 옵션
         var options = {
             center: markerPosition, // 지도의 중심좌표
-            level: 3, // 지도의 레벨(확대, 축소 정도)
+            level: 4, // 지도의 레벨(확대, 축소 정도) Up: zoom in, Down: zoom out
         };
 
         //지도 생성
@@ -103,7 +105,8 @@
     function placesSearchCB(data, status, pagination) {
         if(status === kakao.maps.services.Status.OK) {
             for(var i = 0; i < data.length; i++) {
-                displayMarker(data[i]);
+                cpData.push(data[i]);
+                displayMarker(data[i],"placesSearchCB");
             }
             pagination.nextPage();
         }
@@ -114,41 +117,69 @@
     }
 
     // 지도에 마커를 표시하는 함수
-    function displayMarker(place) {
+    function displayMarker(place, key) {
         // TODO: 함수 재구분 해주기 displayMarker는 marker찍어주는 용도의 함수
-        placesArr.push(place);
-        var categoryName = place.category_name;
-        // 검색된 place 카테고리 추출
-        try {
-            categoryName = categoryName.split(">")[1].trim();
-            categoriesArr.push(categoryName);
-        } catch {
-            // console.warn('>>>>예외 발생: split()');
+        if(key == 'placesSearchCB') {
+            var categoryName = place.category_name;
+            // 검색된 가게(place)의 카테고리 추출
+            try {
+                categoryName = categoryName.split(">")[1].trim();
+                categoriesArr.push(categoryName);
+            } catch {
+                // console.warn('>>>>예외 발생: split()');
+            }
+        } else if (key == 'recommendMenu'){
+                // 마커를 생성하고 지도에 표시
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: new kakao.maps.LatLng(place.y, place.x)
+                });
+
+                // 마커에 클릭이벤트를 등록
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    // 마커를 클릭하면 장소명이 인포윈도우에 표출
+                    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+                    infowindow.open(map, marker);
+                });
+
+                markers.push(marker);
         }
 
-
-        // 마커를 생성하고 지도에 표시
-        // var marker = new kakao.maps.Marker({
-        //     map: map,
-        //     position: new kakao.maps.LatLng(place.y, place.x)
-        // });
-
-        // 마커에 클릭이벤트를 등록
-        // kakao.maps.event.addListener(marker, 'click', function() {
-        //     // 마커를 클릭하면 장소명이 인포윈도우에 표출
-        //     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-        //     infowindow.open(map, marker);
-        // });
     }
 
     // 메뉴 추천해주는 함수
     function recommendMenu() {
-        var random = Math.floor(Math.random() * uniqCategories.size);
-        menu = Array.from(uniqCategories)[random];
-        var market = new Array();
-        market.push(placesArr.category_name.includes(menu)); // 당첨된 메뉴 판매하는 가게들
-        // TODO:market 목록 리스트로 보여주기, 마커찍기
+        removeMarker(); // 기존 마커 제거
+        setTimeout( () => {
+            var random = Math.floor(Math.random() * uniqCategories.size);
+            menu = Array.from(uniqCategories)[random];
+            console.log("오늘의 메뉴~\n" + menu);
 
+            // 오늘의 메뉴 판매하는 가게들 push
+            for (var i = 0; i < cpData.length; i++) {
+                if(cpData[i].category_name.includes(menu)) {
+                    market.push(cpData[i]);
+                }
+            }
+
+            // 오늘의 메뉴 판매하는 가게들 마커찍기
+            for (var i = 0; i < market.length; i++) {
+                displayMarker(market[i], "recommendMenu");
+            }
+
+            // 메뉴 알려주기
+            alert("오늘의 메뉴쓰~\n\t[" + menu + "]\t");
+        }, 100);
+    }
+
+    // 지도 위에 표시되고 있는 마커를 모두 제거합니다
+    function removeMarker() {
+        for ( var i = 0; i < markers.length; i++ ) {
+            markers[i].setMap(null);
+            // market[i].setMap(null);
+        }
+        markers = [];
+        market = [];
     }
 
 
