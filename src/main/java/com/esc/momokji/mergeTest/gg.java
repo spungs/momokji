@@ -8,4 +8,8 @@ public class gg {
     public void test1() throws Exception {
         // 헤헤
     }
+
+    public void test2() throws Exception {
+        // 흐흐
+    }
 }
