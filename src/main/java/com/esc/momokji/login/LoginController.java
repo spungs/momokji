@@ -9,4 +9,8 @@ public class LoginController {
     public String login() throws Exception {
         return "login/login";
     }
+
+    public String test() throws Exception {
+        return "String";
+    }
 }
