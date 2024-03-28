@@ -1,0 +1,21 @@
+.rightClickWrapper {
+    display : none;
+    position : absolute;
+    background : #EAEAEA;
+    width : 120px;
+    height : 35px;
+    border : 1px solid gray;
+    border-radius : 4px;
+    z-index : 999;
+}
+
+.rightClickWrapper > span {
+    text-align : center;
+}
+
+.setCurPositionBtn {
+    height : 100%;
+    line-height : 30px;
+    font-size : 13px !important;
+    font-weight : normal !important;
+}

@@ -5,8 +5,18 @@
     <title>카카오 지도 api</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=56890df0b42db89c1ce2298848552ff9&libraries=services,clusterer,drawing"></script>
     <link rel = "stylesheet" th:href = "@{ ~/css/common/commonCss.css }">
+
+    <!-- css -->
+    <link rel = "stylesheet" th:href = "@{ /css/momokji/momokji.css }">
+
+    <!-- 제이꼬리 -->
+    <script th:src="@{ https:ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js }"></script>
+
+    <script>
+
+    </script>
 </head>
-<body>
+<body id = "body">
     <div id = "header" class = "header" th:include = "~{ commonTemplate/headerLayout.html :: commonHeader }" />
     <!-- header Layout -->
     <!-- body -->
@@ -15,6 +25,12 @@
         <button onclick="recommendMenu()">돌려 돌려 돌림판~!</button>
         <h3 id="menu"></h3>
     </div>
+
+<div id = "rightClickWrapper" class = "rightClickWrapper btn btn-danger">
+    <span id = "setCurPositionBtn" class = "setCurPositionBtn">
+        현 위치로 지정
+    </span>
+</div>
 </body>
 <script>
     var latitude; // 위도
@@ -132,22 +148,21 @@
                 // console.warn('>>>>예외 발생: split()');
             }
         } else if (key == 'recommendMenu'){
-                // 마커를 생성하고 지도에 표시
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: new kakao.maps.LatLng(place.y, place.x)
-                });
+            // 마커를 생성하고 지도에 표시
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: new kakao.maps.LatLng(place.y, place.x)
+            });
 
-                // 마커에 클릭이벤트를 등록
-                kakao.maps.event.addListener(marker, 'click', function() {
-                    // 마커를 클릭하면 장소명이 인포윈도우에 표출
-                    infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-                    infowindow.open(map, marker);
-                });
+            // 마커에 클릭이벤트를 등록
+            kakao.maps.event.addListener(marker, 'click', function() {
+                // 마커를 클릭하면 장소명이 인포윈도우에 표출
+                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+                infowindow.open(map, marker);
+            });
 
-                markers.push(marker);
+            markers.push(marker);
         }
-
     }
 
     // 메뉴 추천해주는 함수
@@ -189,4 +204,7 @@
 
 
 </script>
+
+<!-- script -->
+<script th:src = "@{ ~/js/momokji/momokji.js }"></script>
 </html>
